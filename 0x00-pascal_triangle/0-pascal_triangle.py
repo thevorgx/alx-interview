@@ -3,7 +3,7 @@
 
 
 def pascal_triangle(n):
-	"""Pascal triangle"""
+    """Pascal triangle"""
     triangle = []
 
     if n <= 0:
