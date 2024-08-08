@@ -12,13 +12,8 @@ def minOperations(n):
 
     while n > 1:
         if n % factor == 0:
-            tmp = n
-            count = 0
-            while tmp >= factor:
-                tmp -= factor
-                count += 1
-            n = count
             operations_count += factor
+            n = int(n / factor)
         else:
             factor += 1
 
