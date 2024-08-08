@@ -4,24 +4,22 @@
 
 def minOperations(n):
     """function find min num of operation to reach a num of chars"""
-    chars = 2
-    prev_chars = 1
-    count = 2
-    paste = 1
-    copy_paste = 2
-    for i in range(n-1):
-        res = n / chars
-        if res != int(res) and chars != n:
-            count += paste
-            chars += prev_chars
-            continue
-        elif res == int(res) and chars != n:
-            count += copy_paste
-            prev_chars = chars
-            chars += prev_chars
-            continue
-        elif chars == n:
-            break
+    operations_count = 0
+    factor = 2
+
+    if n <= 1:
+        return (0)
+
+    for _ in range(n):
+        if n % factor == 0:
+            tmp = n
+            count = 0
+            while tmp >= factor:
+                tmp -= factor
+                count += 1
+            n = count
+            operations_count += factor
         else:
-            return (0)
-    return (count)
+            factor += 1
+
+    return (operations_count)
