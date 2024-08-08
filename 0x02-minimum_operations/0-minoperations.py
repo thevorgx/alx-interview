@@ -10,7 +10,7 @@ def minOperations(n):
     if n <= 1:
         return (0)
 
-    for _ in range(n):
+    while n > 1:
         if n % factor == 0:
             tmp = n
             count = 0
