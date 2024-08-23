@@ -6,23 +6,22 @@ from typing import List
 def validUTF8(data: List[int]) -> bool:
     """determines if a given data set represents a valid UTF-8 encoding"""
     continuation_bytes = 0
-    for byte in data:
-        if not 0 <= byte <= 255:
+    for num in data:
+        if num < 0 or num > 255:
             return (False)
         if continuation_bytes == 0:
-            if byte >> 7 == 0b0:
-                continue
-            elif continuation_bytes >> 5 == 0b110:
-                count = 1
-            elif continuation_bytes >> 4 == 0b1110:
-                count = 2
-            elif continuation_bytes >> 3 == 0b11110:
-                count = 3
-            else:
+            if (num >> 5) == 0b110:
+                continuation_bytes = 1
+            elif (num >> 4) == 0b1110:
+                continuation_bytes = 2
+            elif (num >> 3) == 0b11110:
+                continuation_bytes = 3
+            elif (num >> 7) != 0:
                 return (False)
+
         else:
-            if continuation_bytes >> 6 == 0b10:
-                count -= 1
-            else:
+            if (num >> 6) != 0b10:
                 return (False)
-    return (True)
+            remaining_bytes -= 1
+
+    return (continuation_bytes == 0)
