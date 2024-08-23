@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """UTF-8 Validation"""
+from typing import List
 
 
-def validUTF8(data):
+def validUTF8(data: List[int]) -> bool:
     """determines if a given data set represents a valid UTF-8 encoding"""
     continuation_bytes = 0
     for byte in data:
