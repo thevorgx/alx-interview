@@ -21,8 +21,8 @@ def validUTF8(data: List[int]) -> bool:
             else:
                 return (False)
         else:
-            if num >> 6 == 0b10:
-                continuation_bytes -= 1
-            else:
+            if num >> 6 != 0b10:
                 return (False)
+            continuation_bytes -= 1
+
     return (continuation_bytes == 0)
