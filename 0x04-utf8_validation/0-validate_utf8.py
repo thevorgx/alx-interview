@@ -25,4 +25,4 @@ def validUTF8(data: List[int]) -> bool:
                 return (False)
             continuation_bytes -= 1
 
-    return (True)
+    return (continuation_bytes == 0)
