@@ -3,7 +3,7 @@
 from typing import List
 
 
-def validUTF8(data: List) -> bool:
+def validUTF8(data: List[int]) -> bool:
     """determines if a given data set represents a valid UTF-8 encoding"""
     continuation_bytes = 0
     for num in data:
